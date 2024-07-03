@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "webserver-and-daemon"
+version = "0.1.0"
+description = ""
+authors = ["Tim Chapman <13381054+timchap@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+dagster = "1.7.5"
+dagster-webserver = "1.7.5"
+dagster-gcp = { git = "https://github.com/timchap/dagster.git", subdirectory = "python_modules/libraries/dagster-gcp", branch = "feat/cloud-run-run-launcher" }
+dagster-postgres = "0.23.5"
+pendulum = "^3.0.0"
+google-cloud-secret-manager = "^2.18.2"
+tenacity = "^8.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

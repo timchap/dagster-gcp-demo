@@ -1,0 +1,14 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    # Install Docker Buildx
+    docker buildx create --use
+    # Build and push multi-platform image
+    docker buildx build --platform linux/amd64,linux/arm64 -t europe-docker.pkg.dev/cfarm-tech-registry/dagster-gcp-demo/dagster-code-location-b:latest --cache-from=type=registry,ref=europe-docker.pkg.dev/cfarm-tech-registry/dagster-gcp-demo/dagster-code-location-b:cache --cache-to=type=registry,ref=europe-docker.pkg.dev/cfarm-tech-registry/dagster-gcp-demo/dagster-code-location-b:cache,mode=max --push .
+
+serviceAccount: projects/cfarm-tech-registry/serviceAccounts/builder@cfarm-tech-registry.iam.gserviceaccount.com
+options:
+  logging: CLOUD_LOGGING_ONLY

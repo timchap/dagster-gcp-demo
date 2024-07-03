@@ -1,0 +1,35 @@
+
+storage:
+  postgres:
+    postgres_db:
+      username:
+        env: DATABASE_USER
+      password:
+        env: DATABASE_PASSWORD
+      hostname:
+        env: DATABASE_HOST
+      db_name:
+        env: DATABASE_DBNAME
+      port: 5432
+
+run_launcher:
+  module: dagster_gcp.cloud_run.run_launcher
+  class: CloudRunRunLauncher
+  config:
+    project:
+      env: GOOGLE_CLOUD_PROJECT
+    region:
+      env: GOOGLE_CLOUD_REGION
+    job_name_by_code_location:
+      code_location_a: dagster-run-worker-a
+      code_location_b: dagster-run-worker-b
+
+compute_logs:
+  module: dagster_gcp.gcs.compute_log_manager
+  class: GCSComputeLogManager
+  config:
+    bucket:
+      env: DAGSTER_LOGS_BUCKET
+    local_dir: "/var/logs"
+    prefix: "compute-logs-"
+    upload_interval: 30

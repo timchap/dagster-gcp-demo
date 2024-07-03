@@ -1,0 +1,14 @@
+
+load_from:
+  - grpc_server:
+      host:
+        env: CODE_SERVER_HOST_A
+      port: 443
+      location_name: "code_location_a"
+      ssl: true
+  - grpc_server:
+      host:
+        env: CODE_SERVER_HOST_B
+      port: 443
+      location_name: "code_location_b"
+      ssl: true

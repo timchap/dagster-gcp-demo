@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "code-location-a"
+version = "0.1.0"
+description = ""
+authors = ["Tim Chapman <13381054+timchap@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+dagster = "1.7.5"
+dagster-postgres = "0.23.5"
+dagster-gcp = { git = "https://github.com/timchap/dagster.git", subdirectory = "python_modules/libraries/dagster-gcp", branch = "feat/cloud-run-run-launcher" }
+pendulum = "^3.0.0"
+requests = "2.20.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
